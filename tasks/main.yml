@@ -1,0 +1,34 @@
+---
+# file: tasks/main.yml 
+
+- include: multi_os.yml
+  tags:
+    - config_nagios_thruk_cron
+    - test_nagios_thruk
+
+- name: Ensure download directory is present
+  file: path={{ download_dir }} state=directory
+  
+- include: repositories.yml
+
+- include: install_thruk.yml
+
+- include: config_thruk.yml
+  tags:
+    - config_nagios_thruk
+
+- include: build-check-mk-livestatus.yml
+
+- include: config_nagios.yml
+
+- include: config_thruk_logcache.yml
+
+- include: config_thruk_cron.yml
+  tags:
+    - config_nagios_thruk_cron
+
+- include: thruk_fixes.yml
+
+- include: tests.yml
+  tags:
+    - test_nagios_thruk

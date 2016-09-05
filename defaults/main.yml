@@ -1,0 +1,36 @@
+---
+
+# Logcache config for Thruk
+thruk_mysql_user: thruk
+thruk_mysql_password: thruk$1999
+thruk_mysql_db: thruk_logs
+thruk_backgrounds_path: '/etc/thruk/usercontent/backgrounds/'
+
+
+# Directory that will be used as the location for the downloads§
+download_dir: "{{ ansible_env.HOME }}/check-mk"
+
+# URL from: http://mathias-kettner.com/check_mk_download_source.html
+check_mk_livestatus_url: 'http://mathias-kettner.com/download/mk-livestatus-1.2.8p2.tar.gz'
+
+# This is the directory where the Plugin source files will be placed, this should be
+# the directory which is created when the download file is unpacked when runnint
+mk_livestatus_src: 'mk-livestatus-1.2.8p2'
+
+
+nagios_cgi_authorized_for_system_information: nagiosadmin
+nagios_cgi_authorized_for_configuration_information: nagiosadmin
+nagios_cgi_authorized_for_system_commands: nagiosadmin
+nagios_cgi_authorized_for_all_services: nagiosadmin
+nagios_cgi_authorized_for_all_hosts: nagiosadmin
+nagios_cgi_authorized_for_all_service_commands: nagiosadmin
+nagios_cgi_authorized_for_all_host_commands: nagiosadmin
+nagios_cgi_authorized_for_read_only: False
+
+# Default proxy_env
+proxy_env:
+  http_proxy: ''
+  https_proxy: ''
+  ftp_proxy: ''
+
+# You can set your own proxy_env like http://user:pass@server:port

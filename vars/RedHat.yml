@@ -1,0 +1,16 @@
+---
+# Check_mk dependencies
+
+thruk_dependencies:
+
+thruk_packages:
+  - thruk # on repository
+
+nagios_version: 4
+nagios_service: nagios
+nagios_etc: /usr/local/nagios/etc
+nagios_config_cfg_dir: "{{ nagios_etc }}/conf.d"
+nagios_config_file: "{{ nagios_etc }}/nagios.cfg"
+
+nagios_live_sock: "/usr/local/nagios/var/rw/live.sock"
+nagios_config_broker_module: "/usr/local/lib/mk-livestatus//livestatus.so {{ nagios_live_sock }}"

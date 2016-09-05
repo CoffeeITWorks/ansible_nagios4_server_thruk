@@ -1,0 +1,44 @@
+---
+### CRON CONFIGURATION ###
+
+# Do not use minute 0 of each hour to avoid crash when nagios is rotating logs.
+
+- cron: name='update logcache data'
+        job='/usr/bin/thruk -a logcacheupdate >>/var/log/thruk.log 2>&1'
+        user='root'
+        cron_file='thruk_cron'
+        weekday='*'
+        hour='1-23'
+        minute='10-50/5'
+  tags:
+    - thruk_cron
+
+- cron: name='update authentication data in our logcache'
+        job='/usr/bin/thruk -a logcacheauthupdate >>/var/log/thruk.log 2>&1'
+        user='root'
+        cron_file='thruk_cron'
+        weekday='*'
+        hour='2'
+        minute='10'
+  tags:
+    - thruk_cron
+
+- cron: name='optimize and repair tables'
+        job='/usr/bin/thruk -a logcacheoptimize   >>/var/log/thruk.log 2>&1'
+        user='root'
+        cron_file='thruk_cron'
+        weekday='*'
+        hour='20'
+        minute='10'
+  tags:
+    - thruk_cron
+
+- cron: name='clean logfiles from cache after two years'
+        job=' /usr/bin/thruk -a logcacheclean=730  >>/var/log/thruk.log 2>&1'
+        user='root'
+        cron_file='thruk_cron'
+        weekday='0'
+        hour='21'
+        minute='10'
+  tags:
+    - thruk_cron

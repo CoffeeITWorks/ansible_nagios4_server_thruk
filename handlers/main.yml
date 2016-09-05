@@ -1,0 +1,21 @@
+# file: nagios-server/handlers/main.yml
+
+- name: Restart Apache
+  service: name=apache2 state=restarted
+
+- name: Reload Apache
+  service: name=apache2 state=reloaded
+
+- name: Restart Thruk
+  service: name=thruk state=restarted
+
+- name: Reload Nagios
+  command: "service {{ nagios_service }} reload"
+
+- name: Restart Nagios
+  service:
+    name: "{{ nagios_service }}"
+    state: reloaded
+
+- name: Update cache
+  apt: 'update_cache=yes'

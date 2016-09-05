@@ -1,0 +1,74 @@
+---
+# Thruk repository
+
+thruk_apt_sources:
+  - "deb http://labs.consol.de/repo/stable/ubuntu {{ ansible_distribution_release }} main"
+
+# Check_mk dependencies
+
+thruk_dependencies:
+  - debconf
+  - time
+  - traceroute
+  - libsnmp-python
+  - curl
+  - dialog
+  - dnsutils
+  - fping
+  - graphviz
+  - libapache2-mod-fcgid
+  - libapache2-mod-fcgid
+  - libapache2-mod-proxy-html
+  - apache2-mpm-prefork
+  - apache2-utils
+  - libdbi1
+  - libevent-1.4-2
+  - libltdl7
+  - libnet-snmp-perl
+  - libpango1.0-0
+  - libperl5.18
+  - libreadline5
+  - libsnmp-perl
+  - libuuid1
+  - libxml2
+  - patch
+  - rpm
+  - binutils
+  - php5-cli
+  - php5-cgi
+  - php5-gd
+  - php5-mcrypt
+  - php5-sqlite
+  - php-pear
+  - pyro
+  - rsync
+  - lcab
+  - smbclient
+  - snmp
+  - unzip
+  - xinetd
+  - python-ldap
+  - libradiusclient-ng2
+  - libpcap0.8
+  - libgsf-1-114
+  - libglib2.0-0
+  - python-reportlab
+  - python-imaging
+  - poppler-utils
+  - nagios-images  # Installs /usr/share/nagios3/htdocs/images/logos/
+
+thruk_packages:
+  - thruk # on repository
+
+nagios_etc: '/usr/local/nagios/etc'
+nagios_config_cfg_dir: "{{ nagios_etc }}/conf.d"
+
+nagios_version: 4
+nagios_service: nagios
+nagios_config_file: "{{ nagios_etc }}/nagios.cfg"
+nagios_cgi_file: "{{ nagios_etc }}/cgi.cfg"
+nsca_config_file: /etc/nsca.cfg
+
+
+nagios_live_sock: "/usr/local/nagios/var/rw/live.sock"
+nagios_config_broker_module: "/usr/local/lib/mk-livestatus/livestatus.o {{ nagios_live_sock }}"

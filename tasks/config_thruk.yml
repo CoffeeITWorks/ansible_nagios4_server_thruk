@@ -1,0 +1,68 @@
+---
+
+# copy backgrounds to thruk
+# It will search for thruk_backgrounds as subfolder where your site.yml is
+- name: config_thruk | Copy backgrounds to thruk
+  copy:
+    src={{ item }}
+    dest="{{ thruk_backgrounds_path }}"
+    owner=www-data
+    group=www-data
+    mode=666
+  with_fileglob:
+  - "thruk_backgrounds/*"
+
+# Copy your logos to images that will be used by thruk:
+# It will search for thruk_backgrounds as subfolder where your site.yml is
+#
+#  - logo_thruk.png         246x89
+#  - logo_thruk_small.png   139x50
+#  - logo_thruk_mid.png     130x40
+- name: config_thruk | Copy backgrounds to thruk
+  copy:
+    src={{ item }}
+    dest="/usr/share/thruk/themes/themes-available/Exfoliation/images"
+    owner=www-data
+    group=www-data
+    mode=644
+  with_fileglob:
+  - "thruk_company_logos/*"
+
+- name: ensure permissions directory to thruk userdata
+  file:
+    path="{{ thruk_backgrounds_path }}"
+    owner=www-data
+    group=www-data
+    mode=765
+    state=directory
+
+- name: config_thruk | copy sound files
+  copy: src={{ item }} dest="/usr/share/thruk/root/thruk/media" mode=644
+  with_fileglob:
+  - "sound/*"
+  
+- name: configure cgi thruk
+  template:
+    src=cgi.cfg.j2
+    dest=/etc/thruk/cgi.cfg
+    owner=root group=root mode=644
+
+- name: configure web thruk
+  template:
+    src=apache2/thruk.conf.j2
+    dest=/etc/apache2/conf-available/thruk.conf
+    owner=root group=root mode=644
+  notify: Reload Apache
+
+- name: configure thruk
+  template:
+    src=thruk_local.conf.j2
+    dest=/etc/thruk/thruk_local.conf
+    owner=www-data group=www-data mode=660
+  notify: Restart Thruk
+
+- name: link images/logos for thruk theme Exfoliation
+  file: src={{ item.src }} dest={{ item.dest }} state=link
+  with_items:
+    - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
+  when: ansible_os_family == 'Debian'

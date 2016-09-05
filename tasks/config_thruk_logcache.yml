@@ -1,0 +1,17 @@
+---
+
+# MYSQL
+
+- name: Start the MySQL service
+  service: name=mysql state=started
+
+# mysql_root_password comes from dependency changed to ANXS.mysql
+- name: Create your database for thruk_logcache (thruk_logs) installation.
+  mysql_db: name={{thruk_mysql_db}}  login_user=root login_password={{mysql_root_password}} state=present
+
+- name: Create thruk_mysql_db database users and grant access to thruk_users
+  mysql_user: name="{{thruk_mysql_user}}" host={{item}}  password="{{thruk_mysql_password}}" login_user="root"  login_password={{mysql_root_password}} priv="{{thruk_mysql_db}}.*:ALL" state=present
+  with_items:
+  - 127.0.0.1
+  - ::1
+  - localhost

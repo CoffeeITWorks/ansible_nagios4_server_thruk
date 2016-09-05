@@ -1,0 +1,6 @@
+---
+# file: tasks/thruk_fixes.yml
+
+- name: delete /etc/apache2/conf-enabled/thruk_cookie_auth_vhost.conf fixes https://github.com/sni/Thruk/issues/504
+  file: path='/etc/apache2/conf-enabled/thruk_cookie_auth_vhost.conf' state=absent
+  notify: Reload Apache

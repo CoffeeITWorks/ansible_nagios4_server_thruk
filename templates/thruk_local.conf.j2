@@ -1,0 +1,49 @@
+############################################
+# put your own settings into this file
+# settings from this file will override
+# those from the thruk.conf
+############################################
+
+default_theme = Exfoliation
+report_max_objects = 3500
+
+# First day of week: 1 (Monday)
+first_day_of_week = 1
+
+logcache = mysql://{{ thruk_mysql_user }}:{{ thruk_mysql_password }}@localhost:3306/{{thruk_mysql_db}}
+
+# color complete status line with status colour or just the status
+# itself.
+status_color_background = 1
+
+# Include messages with class = 2 (program messages) in reports.
+# Setting this to 0 allows the MySQL backend to use indexes efficiently
+report_include_class2 = 0
+
+<Component Thruk::Backend>
+    <peer>
+        name    = nagios4
+        type    = livestatus
+        hidden  = 1
+        <options>
+            peer          = {{ nagios_live_sock }}
+        </options>
+        <configtool>
+          core_type = nagios
+          core_conf  = /usr/local/nagios/etc/nagios.cfg
+          obj_check_cmd  =  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+          obj_reload = /etc/init.d/nagios reload
+        </configtool>
+    </peer>
+</Component>
+
+
+<Component Thruk::Plugin::Statusmap>
+    # you may change the default map type of the statusmap here. Valid
+    # types are: 'table' and 'circle'
+    default_type    = circle
+
+    # and the statusmap default group by which has to be one of:
+    # 'parent', 'address', 'domain', 'hostgroup', 'servicegroup'
+    default_groupby = parent
+</Component>

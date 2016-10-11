@@ -5,16 +5,18 @@
 ############################################
 
 default_theme = Exfoliation
-report_max_objects = 5000
+report_max_objects = 2500
 
 # For more efficient reports:
 report_use_temp_files = 31
 report_update_logcache = 0
 # Reports should not take more than 40s to get it working:
-no_external_job_forks = 0
+no_external_job_forks = 1
 
 # allow error reports
 show_error_reports = both
+
+max_process_memory=512
 
 # Include messages with class = 2 (program messages) in reports.
 # Setting this to 0 allows the MySQL backend to use indexes efficiently

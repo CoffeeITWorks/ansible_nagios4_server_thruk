@@ -5,7 +5,20 @@
 ############################################
 
 default_theme = Exfoliation
-report_max_objects = 3500
+report_max_objects = 5000
+
+# For more efficient reports:
+report_use_temp_files = 31
+report_update_logcache = 0
+# Reports should not take more than 40s to get it working:
+no_external_job_forks = 0
+
+# allow error reports
+show_error_reports = both
+
+# Include messages with class = 2 (program messages) in reports.
+# Setting this to 0 allows the MySQL backend to use indexes efficiently
+report_include_class2 = 0
 
 # First day of week: 1 (Monday)
 first_day_of_week = 1
@@ -16,9 +29,7 @@ logcache = mysql://{{ thruk_mysql_user }}:{{ thruk_mysql_password }}@localhost:3
 # itself.
 status_color_background = 1
 
-# Include messages with class = 2 (program messages) in reports.
-# Setting this to 0 allows the MySQL backend to use indexes efficiently
-report_include_class2 = 0
+
 
 <Component Thruk::Backend>
     <peer>

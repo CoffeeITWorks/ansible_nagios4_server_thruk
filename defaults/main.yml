@@ -20,10 +20,10 @@ mk_livestatus_src: 'mk-livestatus-1.2.8p2'
 # Performance optimizations
 thruk_max_process_memory: '2048'
 # It requires lot of memory for reports: 
+# Increas ealso the max_process_memory with this and RAM
 thruk_report_max_objects: '2000'
 # Reports should not take more than 40s to get it working if it is 0:
-# Large reports didn't work properly with this settings off
-thruk_no_external_job_forks: 1
+thruk_no_external_job_forks: 0
 # Disable cache update for each ran report, will require cron job running (already done by this role)
 thruk_report_update_logcache: 0
 

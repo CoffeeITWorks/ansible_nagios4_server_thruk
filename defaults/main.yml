@@ -17,6 +17,8 @@ check_mk_livestatus_url: 'http://mathias-kettner.com/download/mk-livestatus-1.2.
 # the directory which is created when the download file is unpacked when runnint
 mk_livestatus_src: 'mk-livestatus-1.2.8p2'
 
+# Performance optimizations
+thruk_max_process_memory: '2048'
 
 nagios_cgi_authorized_for_system_information: nagiosadmin
 nagios_cgi_authorized_for_configuration_information: nagiosadmin

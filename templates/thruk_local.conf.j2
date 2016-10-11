@@ -5,18 +5,22 @@
 ############################################
 
 default_theme = Exfoliation
-report_max_objects = 2500
 
 # For more efficient reports:
 report_use_temp_files = 31
-report_update_logcache = 0
-# Reports should not take more than 40s to get it working if it is 0:
-no_external_job_forks = 0
+report_update_logcache = {{ thruk_report_update_logcache }}
 
 # allow error reports
 show_error_reports = both
 
 max_process_memory={{ thruk_max_process_memory }}
+# It requires lot of memory for reports: 
+report_max_objects = {{ thruk_report_max_objects }}
+
+# Reports should not take more than 40s to get it working if it is 0:
+# Large reports didn't work properly with this settings off
+no_external_job_forks = {{ thruk_no_external_job_forks }}
+
 
 # Include messages with class = 2 (program messages) in reports.
 # Setting this to 0 allows the MySQL backend to use indexes efficiently

@@ -2,7 +2,7 @@
 define service {
     host_name               localhost
     service_description     Check if MySQL is running
-    check_command           check_linux_process_local!1610612736!2147483648!/var/run/mysqld/mysqld.pid
-    notes                   Warning with it uses 1.5Gb of RAM.
+    check_command           check_linux_process_local!2684354560!3221225472!/var/run/mysqld/mysqld.pid
+    notes                   Warning with it uses 2.5Gb of RAM.
     use                     generic-service
 }

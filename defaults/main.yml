@@ -29,9 +29,17 @@ thruk_report_update_logcache: 0
 # Include messages with class = 2 (program messages) in reports.
 # Setting this to 0 allows the MySQL backend to use indexes efficiently
 thruk_report_include_class2: 0
+# First day of week: 1 (Monday)
+thruk_first_day_of_week: 1
 
 # Theme change:
 thruk_default_theme: Thruk2
+# color complete status line with status colour or just the status
+# itself.
+thruk_status_color_background: 1
+
+thruk_backend_name: nagios4
+thruk_backend_type: livestatus
 
 nagios_cgi_authorized_for_system_information: nagiosadmin
 nagios_cgi_authorized_for_configuration_information: nagiosadmin

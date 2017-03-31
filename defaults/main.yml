@@ -26,7 +26,12 @@ thruk_report_max_objects: '2000'
 thruk_no_external_job_forks: 0
 # Disable cache update for each ran report, will require cron job running (already done by this role)
 thruk_report_update_logcache: 0
+# Include messages with class = 2 (program messages) in reports.
+# Setting this to 0 allows the MySQL backend to use indexes efficiently
+thruk_report_include_class2: 0
 
+# Theme change:
+thruk_default_theme: Thruk2
 
 nagios_cgi_authorized_for_system_information: nagiosadmin
 nagios_cgi_authorized_for_configuration_information: nagiosadmin

@@ -4,7 +4,7 @@
 # those from the thruk.conf
 ############################################
 
-default_theme = Exfoliation
+default_theme = {{ thruk_default_theme }}
 
 # For more efficient reports:
 report_use_temp_files = 31
@@ -23,23 +23,23 @@ no_external_job_forks = {{ thruk_no_external_job_forks }}
 
 # Include messages with class = 2 (program messages) in reports.
 # Setting this to 0 allows the MySQL backend to use indexes efficiently
-report_include_class2 = 0
+report_include_class2 = {{ thruk_report_include_class2 }}
 
 # First day of week: 1 (Monday)
-first_day_of_week = 1
+first_day_of_week = {{ thruk_first_day_of_week }}
 
 logcache = mysql://{{ thruk_mysql_user }}:{{ thruk_mysql_password }}@localhost:3306/{{thruk_mysql_db}}
 
 # color complete status line with status colour or just the status
 # itself.
-status_color_background = 1
+status_color_background = {{ thruk_status_color_background }}
 
 
 
 <Component Thruk::Backend>
     <peer>
-        name    = nagios4
-        type    = livestatus
+        name    = {{ thruk_backend_name }}
+        type    = {{ thruk_backend_type }}
         hidden  = 1
         <options>
             peer          = {{ nagios_live_sock }}

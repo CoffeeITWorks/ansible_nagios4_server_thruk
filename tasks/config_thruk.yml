@@ -18,10 +18,20 @@
 #  - logo_thruk.png         246x89
 #  - logo_thruk_small.png   139x50
 #  - logo_thruk_mid.png     130x40
-- name: config_thruk | Copy backgrounds to thruk
+- name: config_thruk | Copy backgrounds to thruk Exfoliation theme
   copy:
     src={{ item }}
     dest="/usr/share/thruk/themes/themes-available/Exfoliation/images"
+    owner=www-data
+    group=www-data
+    mode=644
+  with_fileglob:
+  - "thruk_company_logos/*"
+
+- name: config_thruk | Copy backgrounds to thruk2 theme
+  copy:
+    src={{ item }}
+    dest="/usr/share/thruk/themes/themes-available/Thruk2/images"
     owner=www-data
     group=www-data
     mode=644

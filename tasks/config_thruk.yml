@@ -75,4 +75,5 @@
   file: src={{ item.src }} dest={{ item.dest }} state=link
   with_items:
     - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
+    - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
   when: ansible_os_family == 'Debian'

@@ -17,8 +17,6 @@
   tags:
     - config_nagios_thruk
 
-- include: build-check-mk-livestatus.yml
-
 - include: config_nagios.yml
 
 - include: config_thruk_logcache.yml

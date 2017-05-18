@@ -13,8 +13,3 @@
     - { src: 'localhost_thruk.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/localhost_thruk.cfg' }
   notify: Reload Nagios
   
-- name: lineinfile - configure nagios.cfg for check-mk
-  lineinfile: "dest={{ nagios_config_file }} regexp='{{ item.src }}' line='{{ item.value }}'"
-  with_items:
-  - { src: "^broker_module=" , value: "broker_module={{ nagios_config_broker_module }}" }
-  notify: Restart Nagios

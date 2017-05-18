@@ -60,15 +60,3 @@ thruk_dependencies:
 thruk_packages:
   - thruk # on repository
 
-nagios_etc: '/usr/local/nagios/etc'
-nagios_config_cfg_dir: "{{ nagios_etc }}/conf.d"
-
-nagios_version: 4
-nagios_service: nagios
-nagios_config_file: "{{ nagios_etc }}/nagios.cfg"
-nagios_cgi_file: "{{ nagios_etc }}/cgi.cfg"
-nsca_config_file: /etc/nsca.cfg
-
-
-nagios_live_sock: "/usr/local/nagios/var/rw/live.sock"
-nagios_config_broker_module: "/usr/local/lib/mk-livestatus/livestatus.o {{ nagios_live_sock }}"

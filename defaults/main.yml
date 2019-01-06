@@ -1,8 +1,9 @@
 ---
 
 # Logcache config for Thruk
+mysql_root_password: root
 thruk_mysql_user: thruk
-thruk_mysql_password: thruk$1999
+thruk_mysql_password: thrukpassword
 thruk_mysql_db: thruk_logs
 
 # Vars for copying thruk backgrounds

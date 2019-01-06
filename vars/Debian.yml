@@ -41,7 +41,6 @@ thruk_dependencies:
   - libgsf-1-114
   - libglib2.0-0
   - python-reportlab
-  - python-imaging
   - poppler-utils
   - nagios-images  # Installs /usr/share/nagios3/htdocs/images/logos/
 

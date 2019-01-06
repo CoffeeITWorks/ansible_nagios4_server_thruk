@@ -11,6 +11,7 @@
     mode=666
   with_fileglob:
   - "thruk_backgrounds/*"
+  when: thruk_copy_backgrounds
 
 # Copy your logos to images that will be used by thruk:
 # It will search for thruk_backgrounds as subfolder where your site.yml is

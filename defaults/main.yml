@@ -4,6 +4,9 @@
 thruk_mysql_user: thruk
 thruk_mysql_password: thruk$1999
 thruk_mysql_db: thruk_logs
+
+# Vars for copying thruk backgrounds
+thruk_copy_backgrounds: false
 thruk_backgrounds_path: '/etc/thruk/usercontent/backgrounds/'
 
 

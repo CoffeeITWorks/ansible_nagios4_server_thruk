@@ -30,7 +30,6 @@ thruk_dependencies:
   - php-cli
   - php-cgi
   - php-gd
-  - php-mcrypt
   - php-sqlite3
   - php-pear
   - pyro

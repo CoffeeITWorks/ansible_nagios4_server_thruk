@@ -33,10 +33,11 @@ platforms:
     groups:
       - group1
 
-  - name: ansible_test-02
-    image: ubuntu:trusty     
-    groups:
-      - groupold
+# Disable trusty test due to https://github.com/ansible/ansible/issues/21208#event-1883144200
+#  - name: ansible_test-02
+#    image: ubuntu:trusty     
+#    groups:
+#      - groupold
 #
 #  - name: ansible_test-03
 #    image: centos/systemd 

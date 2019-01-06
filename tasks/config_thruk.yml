@@ -28,6 +28,7 @@
     mode=644
   with_fileglob:
   - "thruk_company_logos/*"
+  when: thruk_copy_backgrounds
 
 - name: config_thruk | Copy backgrounds to thruk2 theme
   copy:
@@ -38,6 +39,7 @@
     mode=644
   with_fileglob:
   - "thruk_company_logos/*"
+  when: thruk_copy_backgrounds
 
 - name: ensure permissions directory to thruk userdata
   file:

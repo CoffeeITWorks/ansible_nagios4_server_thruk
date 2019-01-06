@@ -43,6 +43,7 @@ thruk_dependencies:
   - python-reportlab
   - poppler-utils
   - nagios-images  # Installs /usr/share/nagios3/htdocs/images/logos/
+  - locales
 
 thruk_packages:
   - thruk # on repository

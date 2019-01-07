@@ -12,3 +12,9 @@
 
 - name: test if "{{ nagios_live_sock }}" exist for thruk connection
   file: path="{{ nagios_live_sock }}" state=file
+
+- name: ensure thruk is started
+  service:
+    name: "thruk"
+    state: started
+

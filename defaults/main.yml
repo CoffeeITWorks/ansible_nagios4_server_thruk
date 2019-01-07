@@ -1,9 +1,13 @@
 ---
 
 # Logcache config for Thruk
+mysql_root_password: root
 thruk_mysql_user: thruk
-thruk_mysql_password: thruk$1999
+thruk_mysql_password: thrukpassword
 thruk_mysql_db: thruk_logs
+
+# Vars for copying thruk backgrounds
+thruk_copy_backgrounds: false
 thruk_backgrounds_path: '/etc/thruk/usercontent/backgrounds/'
 
 
@@ -21,6 +25,9 @@ thruk_report_update_logcache: 0
 thruk_report_include_class2: 0
 # First day of week: 1 (Monday)
 thruk_first_day_of_week: 1
+
+# https://www.thruk.org/documentation/configuration.html#report_use_temp_files
+thruk_report_use_temp_files: 7
 
 # Theme change:
 thruk_default_theme: Thruk2

@@ -2,7 +2,7 @@
 # file: tasks/config_nagios.yml
 
 
-- name: Configure Generic Nagios stuff
+- name: Configure localhost_thruk.cfg
   template:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'

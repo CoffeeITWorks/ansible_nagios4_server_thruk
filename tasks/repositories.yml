@@ -12,7 +12,9 @@
 
 # Add an Apt signing key, uses whichever key is at the URL
 - name: Install gpg key for thruk repository
-  shell: 'wget -q "https://labs.consol.de/repo/stable/RPM-GPG-KEY" -O - | sudo apt-key add -'
+  apt_key:
+    url: "https://labs.consol.de/repo/stable/RPM-GPG-KEY"
+    state: present
   environment: "{{ proxy_env }}"
   when: add_thruk_repo.changed
 

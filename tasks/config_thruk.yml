@@ -11,6 +11,7 @@
     mode=666
   with_fileglob:
   - "thruk_backgrounds/*"
+  when: thruk_copy_backgrounds
 
 # Copy your logos to images that will be used by thruk:
 # It will search for thruk_backgrounds as subfolder where your site.yml is
@@ -27,6 +28,7 @@
     mode=644
   with_fileglob:
   - "thruk_company_logos/*"
+  when: thruk_copy_backgrounds
 
 - name: config_thruk | Copy backgrounds to thruk2 theme
   copy:
@@ -37,6 +39,7 @@
     mode=644
   with_fileglob:
   - "thruk_company_logos/*"
+  when: thruk_copy_backgrounds
 
 - name: ensure permissions directory to thruk userdata
   file:
@@ -57,19 +60,14 @@
     dest=/etc/thruk/cgi.cfg
     owner=root group=root mode=644
 
-- name: configure web thruk
-  template:
-    src=apache2/thruk.conf.j2
-    dest=/etc/apache2/conf-available/thruk.conf
-    owner=root group=root mode=644
-  notify: Reload Apache
-
 - name: configure thruk
   template:
     src=thruk_local.conf.j2
     dest=/etc/thruk/thruk_local.conf
     owner=www-data group=www-data mode=660
-  notify: Restart Thruk
+  notify: 
+  - Restart Apache
+  - Restart Thruk
 
 - name: link images/logos for thruk theme Exfoliation
   file: src={{ item.src }} dest={{ item.dest }} state=link
@@ -77,3 +75,17 @@
     - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
     - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
   when: ansible_os_family == 'Debian'
+
+# enables the Apache2 module "fastcgi"
+- name: enable fastcgi on apache for thruk installation
+  apache2_module:
+    state: present
+    name: fastcgi
+  when: thruk_enable_fastcgi
+
+# enables the Apache2 module "fcgid"
+- name: enable fcgid on apache for thruk installation
+  apache2_module:
+    state: present
+    name: fcgid
+

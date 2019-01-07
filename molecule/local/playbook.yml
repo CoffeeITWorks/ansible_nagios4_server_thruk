@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  roles:
+    - role: geerlingguy.mysql
+    - role: ansible-role-nagios
+    - role: coffeeitworks.ansible_nagios4_server_config
+    - role: ansible_nagios4_server_thruk

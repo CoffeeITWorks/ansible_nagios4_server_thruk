@@ -14,3 +14,10 @@
 # If you have doubts to set variables, use:
 # http://pkgs.org
 # And ofcourse any good documentation
+
+- name: Include Distribution version specific variables for major_version
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+      skip: true

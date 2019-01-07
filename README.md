@@ -5,6 +5,13 @@ Thruk interface for nagios.
 
 ### To easily replace thruk logo and add backgrounds to panorama view
 
+*Enable var:*
+
+```yaml
+# In your group_vars/thruk_group/vars.yml
+thruk_copy_backgrounds: true
+```
+
 Wherever your site.yml (playbook) is, create subfolder: thruk_company_logos, with these files:
 
     - logo_thruk.png         246x89

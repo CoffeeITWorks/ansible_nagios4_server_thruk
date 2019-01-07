@@ -1,0 +1,49 @@
+---
+# Thruk repository
+
+thruk_apt_sources:
+  - "deb http://labs.consol.de/repo/stable/ubuntu {{ ansible_distribution_release }} main"
+
+# Check_mk dependencies
+
+thruk_dependencies:
+  - debconf
+  - time
+  - traceroute
+  - libsnmp-python
+  - curl
+  - dialog
+  - graphviz
+  - libapache2-mod-fcgid
+  - apache2-utils
+  - libdbi1
+  - libevent-1.4-2
+  - libltdl7
+  - libpango1.0-0
+  - libperl-dev
+  - libreadline5
+  - libuuid1
+  - libxml2
+  - patch
+  - rpm
+  - binutils
+  - php-cli
+  - php-cgi
+  - php-gd
+  - php-sqlite3
+  - php-pear
+  - pyro
+  - rsync
+  - lcab
+  - unzip
+  - python-ldap
+  - libpcap0.8
+  - libgsf-1-114
+  - libglib2.0-0
+  - python-reportlab
+  - poppler-utils
+  - nagios-images  # Installs /usr/share/nagios3/htdocs/images/logos/
+  - locales
+
+thruk_packages:
+  - thruk # on repository

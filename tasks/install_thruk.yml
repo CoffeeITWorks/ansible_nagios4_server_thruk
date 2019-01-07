@@ -10,3 +10,5 @@
   package: name={{ thruk_packages| join(',') }} state=present
   environment:
     DEBIAN_FRONTEND: noninteractive
+  notify: Restart Apache
+

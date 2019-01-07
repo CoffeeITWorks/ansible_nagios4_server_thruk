@@ -48,3 +48,6 @@ thruk_dependencies:
 
 thruk_packages:
   - thruk # on repository
+
+thruk_enable_fastcgi: true
+

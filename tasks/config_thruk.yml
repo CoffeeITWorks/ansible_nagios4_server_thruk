@@ -65,7 +65,9 @@
     src=thruk_local.conf.j2
     dest=/etc/thruk/thruk_local.conf
     owner=www-data group=www-data mode=660
-  notify: Restart Thruk
+  notify: 
+  - Restart Apache
+  - Restart Thruk
 
 - name: link images/logos for thruk theme Exfoliation
   file: src={{ item.src }} dest={{ item.dest }} state=link
@@ -79,9 +81,11 @@
   apache2_module:
     state: present
     name: fastcgi
+  when: thruk_enable_fastcgi
 
 # enables the Apache2 module "fcgid"
-- name: enable fastcgi on apache for thruk installation
+- name: enable fcgid on apache for thruk installation
   apache2_module:
     state: present
     name: fcgid
+

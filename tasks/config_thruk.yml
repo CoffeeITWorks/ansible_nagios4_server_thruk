@@ -73,3 +73,15 @@
     - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
     - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
   when: ansible_os_family == 'Debian'
+
+# enables the Apache2 module "fastcgi"
+- name: enable fastcgi on apache for thruk installation
+  apache2_module:
+    state: present
+    name: fastcgi
+
+# enables the Apache2 module "fcgid"
+- name: enable fastcgi on apache for thruk installation
+  apache2_module:
+    state: present
+    name: fcgid

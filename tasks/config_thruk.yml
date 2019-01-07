@@ -60,13 +60,6 @@
     dest=/etc/thruk/cgi.cfg
     owner=root group=root mode=644
 
-- name: configure web thruk
-  template:
-    src=apache2/thruk.conf.j2
-    dest=/etc/apache2/conf-available/thruk.conf
-    owner=root group=root mode=644
-  notify: Reload Apache
-
 - name: configure thruk
   template:
     src=thruk_local.conf.j2

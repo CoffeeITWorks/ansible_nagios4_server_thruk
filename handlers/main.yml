@@ -11,11 +11,12 @@
 
 - name: Reload Nagios
   command: "service {{ nagios_service }} reload"
+  notify: Restart Nagios
 
 - name: Restart Nagios
   service:
     name: "{{ nagios_service }}"
-    state: reloaded
+    state: restarted
 
 - name: Update cache
   apt: 'update_cache=yes'

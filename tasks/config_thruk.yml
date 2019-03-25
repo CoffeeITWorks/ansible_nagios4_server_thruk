@@ -82,10 +82,12 @@
     state: present
     name: fastcgi
   when: thruk_enable_fastcgi
+  notify: Restart Apache
 
 # enables the Apache2 module "fcgid"
 - name: enable fcgid on apache for thruk installation
   apache2_module:
     state: present
     name: fcgid
+  notify: Restart Apache
 

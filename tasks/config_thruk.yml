@@ -63,11 +63,21 @@
 - name: configure thruk
   template:
     src=thruk_local.conf.j2
-    dest=/etc/thruk/thruk_local.conf
+    dest="{{ thruk_local_conf }}"
     owner=www-data group=www-data mode=660
   notify: 
   - Restart Apache
   - Restart Thruk
+
+- name: setup link for htpasswd file
+  file:
+    src: "{{ nagios_htpasswd }}"
+    dest: "{{ thruk_htpasswd }}"
+    state: link
+    force: yes
+  when: thruk_use_htpasswd_nagios
+  notify:
+  - Restart Apache
 
 - name: link images/logos for thruk theme Exfoliation
   file: src={{ item.src }} dest={{ item.dest }} state=link

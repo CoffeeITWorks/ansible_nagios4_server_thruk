@@ -9,7 +9,9 @@ thruk_mysql_db: thruk_logs
 # Vars for copying thruk backgrounds
 thruk_copy_backgrounds: false
 thruk_backgrounds_path: '/etc/thruk/usercontent/backgrounds/'
-
+thruk_local_conf: '/etc/thruk/thruk_local.conf'
+thruk_htpasswd: '/etc/thruk/htpasswd'
+thruk_use_htpasswd_nagios: True
 
 # Performance optimizations
 thruk_max_process_memory: '2048'
@@ -61,6 +63,7 @@ nagios_config_cfg_dir: "{{ nagios_etc }}/conf.d"
 nagios_version: 4
 nagios_service: nagios
 nagios_config_file: "{{ nagios_etc }}/nagios.cfg"
+nagios_htpasswd: "/usr/local/nagios/etc/htpasswd.users"
 nagios_cgi_file: "{{ nagios_etc }}/cgi.cfg"
 nsca_config_file: /etc/nsca.cfg
 

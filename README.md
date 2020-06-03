@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CoffeeITWorks/ansible_nagios4_server_thruk.svg?branch=master)](https://travis-ci.org/CoffeeITWorks/ansible_nagios4_server_thruk)
+
 Role Name
 =========
 

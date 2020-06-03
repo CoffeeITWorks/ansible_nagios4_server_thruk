@@ -1,4 +1,5 @@
 ############################################
+{{ ansible_managed | comment }}
 # put your own settings into this file
 # settings from this file will override
 # those from the thruk.conf
@@ -63,3 +64,12 @@ status_color_background = {{ thruk_status_color_background }}
     # 'parent', 'address', 'domain', 'hostgroup', 'servicegroup'
     default_groupby = parent
 </Component>
+
+{% for item in thruk_local_additional_options: %}
+{{ item.comment }}
+{{ item.section }}
+  {% for option in item.options %}
+    {{ option }}
+  {% endfor %}}
+{{ item.end_section }}
+{% endfor %}}

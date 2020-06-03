@@ -70,3 +70,19 @@ nsca_config_file: /etc/nsca.cfg
 
 nagios_live_sock: "/usr/local/nagios/var/rw/live.sock"
 nagios_config_broker_module: "/usr/local/lib/mk-livestatus/livestatus.o {{ nagios_live_sock }}"
+
+thruk_local_additional_options:
+  - comment: "# default states for commands option checkboxes"
+    section: <cmd_defaults>
+    options:
+      - ahas                   = 0  # For Hosts Too
+      - broadcast_notification = 0  # Broadcast
+      - force_check            = 0  # Forced Check
+      - force_notification     = 0  # Forced Notification
+      - send_notification      = 1  # Send Notification
+      - sticky_ack             = 0  # Sticky Acknowledgement
+      - persistent_comments    = 1  # Persistent Comments
+      - persistent_ack         = 1  # Persistent Acknowledgement Comments
+      - ptc                    = 0  # For Child Hosts Too
+      - use_expire             = 0  # Use expire for acknowledgements (for cores which support this)
+    end_section: </cmd_defaults>

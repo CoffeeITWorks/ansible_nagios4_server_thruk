@@ -80,13 +80,36 @@ Complete list of roles for your site:
   hosts: nagios_servers
   become: yes
   become_method: sudo
+  pre_tasks:
+    - name: installing python-3 mysql libraries
+      apt: name=python3-mysqldb state=present
+      when: ansible_os_family == 'Debian'
+
   roles:
-    - { role: nagios_server, tags: ["install", "nagios_server_all", "nagios_server"] }
-    - { role: nagios_server_plugins, tags: ["install", "nagios_server_all", "nagios_server_plugins"] }
-    - { role: nagios_server_pnp4nagios, tags: ["install", "nagios_server_all", "nagios_server_pnp4nagios"] }
-    - { role: ANXS.mysql, tags: ["install", "nagios_server_all", "nagios_server_thruk", "ANXS.mysql"] }
-    - { role: nagios_server_thruk, tags: ["install", "nagios_server_all", "nagios_server_thruk"] }
-    - { role: postfix_client, tags: ["install", "nagios_server_all", "postfix_client"] }
+    - role: geerlingguy.mysql
+      tags:
+        - mysql
+        - nagios
+    - role: ansible-role-nagios
+      tags:
+        - nagios
+    - role: coffeeitworks.ansible_nagios4_server_config
+      tags:
+        - nagios
+    #- role: nagios_server_plugins
+    #  tags:
+    #    - nagios
+    #- role: nagios_server_pnp4nagios
+    #  tags:
+    #    - nagios
+    - role: ansible_nagios4_server_thruk
+      tags:
+        - nagios
+
+    #- role: postfix_client
+    #  tags:
+    #    - postfix_client
+
 # Additional tags: role/tag
 # nagios_server             - config_nagios
 # nagios_server             - nagios_server_main_config

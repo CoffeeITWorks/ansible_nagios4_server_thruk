@@ -92,8 +92,8 @@
     dest: "{{ item.dest }}"
     state: link
   with_items:
-    - { src: '/usr/local/nagios/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
-    - { src: '/usr/local/nagios/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
+    - { src: '/usr/local/nagios/share/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
+    - { src: '/usr/local/nagios/share/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
   when: ansible_os_family == 'Debian'
 
 # enables the Apache2 module "fastcgi"

@@ -2,19 +2,20 @@
 # file: tasks/tests.yml
 
 # Es recomendado correr los handlers de cada rol antes de seguir con otro rol, sino los corre cuándo terminó de hacer todo
-- name: ensure handlers runs before continue
+- name: tests | ensure handlers runs before continue
   meta: flush_handlers
 
-- name: ensure nagios is started
+- name: tests | ensure nagios is started
   service:
     name: "{{ nagios_service }}"
     state: started
 
-- name: test if "{{ nagios_live_sock }}" exist for thruk connection
-  file: path="{{ nagios_live_sock }}" state=file
+- name: tests | test if "{{ nagios_live_sock }}" exist for thruk connection
+  file:
+    path: "{{ nagios_live_sock }}"
+    state: file
 
-- name: ensure thruk is started
+- name: tests | ensure thruk is started
   service:
     name: "thruk"
     state: started
-

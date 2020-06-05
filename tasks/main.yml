@@ -7,7 +7,9 @@
     - test_nagios_thruk
 
 - name: Ensure download directory is present
-  file: path={{ download_dir }} state=directory
+  file:
+    path: "{{ download_dir }}"
+    state: directory
   
 - include: repositories.yml
 

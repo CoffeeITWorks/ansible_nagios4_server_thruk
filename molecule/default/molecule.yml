@@ -25,7 +25,7 @@ platforms:
       - use_pip_package
 
   - name: ansible_nagios4_server_thruk-02
-    image: "geerlingguy/docker-debian9-ansible"
+    image: "geerlingguy/docker-ubuntu1604-ansible:latest"
     #privileged: True
     command: /sbin/init
     pre_build_image: true
@@ -38,18 +38,6 @@ platforms:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     groups:
       - use_pip_package
-
-  - name: ansible_nagios4_server_thruk-03
-    image: docker.io/pycontribs/centos:7
-    pre_build_image: true
-    command: /sbin/init
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    #privileged: True
-    groups:
-      - use_dev_package
 
 provisioner:
   name: ansible

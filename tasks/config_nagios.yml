@@ -8,8 +8,7 @@
     dest: '{{ item.dest }}'
     owner: 'root'
     group: 'root'
-    mode: 0644
+    mode: "0644"
   with_items:
     - { src: 'localhost_thruk.cfg.j2', dest: '{{ nagios_config_cfg_dir }}/localhost_thruk.cfg' }
   notify: Reload Nagios
-  

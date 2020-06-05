@@ -1,22 +1,22 @@
 ---
 
-- name: Configure DEB sources for thruk
+- name: repositories | Configure DEB sources for thruk
   template:
     src: sources_thruk.list.j2
     dest: /etc/apt/sources.list.d/sources_thruk.list
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Update cache
   register: add_thruk_repo
 
 # Add an Apt signing key, uses whichever key is at the URL
-- name: Install gpg key for thruk repository
+- name: repositories | Install gpg key for thruk repository
   apt_key:
     url: "https://labs.consol.de/repo/stable/RPM-GPG-KEY"
     state: present
   environment: "{{ proxy_env }}"
   when: add_thruk_repo.changed
 
-- name: ensure handlers runs before continue
+- name: repositories | ensure handlers runs before continue
   meta: flush_handlers

@@ -1,14 +1,17 @@
 ---
 # file: tasks/install_thruk.yml
 
-- name: Install thruk dependencies
-  package: name={{ thruk_dependencies | join(',') }} state=present
+- name: install_thruk | Install thruk dependencies
+  package:
+    name: "{{ thruk_dependencies | join(',') }}"
+    state: present
   environment:
     DEBIAN_FRONTEND: noninteractive
     
-- name: Install thruk packages
-  package: name={{ thruk_packages| join(',') }} state=present
+- name: install_thruk | Install thruk packages
+  package: 
+    name: "{{ thruk_packages| join(',') }}"
+    state: present
   environment:
     DEBIAN_FRONTEND: noninteractive
   notify: Restart Apache
-

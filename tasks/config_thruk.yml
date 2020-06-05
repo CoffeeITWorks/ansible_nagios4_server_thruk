@@ -4,11 +4,11 @@
 # It will search for thruk_backgrounds as subfolder where your site.yml is
 - name: config_thruk | Copy backgrounds to thruk
   copy:
-    src={{ item }}
-    dest="{{ thruk_backgrounds_path }}"
-    owner=www-data
-    group=www-data
-    mode=666
+    src: "{{ item }}"
+    dest: "{{ thruk_backgrounds_path }}"
+    owner: www-data
+    group: www-data
+    mode: "666"
   with_fileglob:
   - "thruk_backgrounds/*"
   when: thruk_copy_backgrounds
@@ -21,55 +21,62 @@
 #  - logo_thruk_mid.png     130x40
 - name: config_thruk | Copy backgrounds to thruk Exfoliation theme
   copy:
-    src={{ item }}
-    dest="/usr/share/thruk/themes/themes-available/Exfoliation/images"
-    owner=www-data
-    group=www-data
-    mode=644
+    src: "{{ item }}"
+    dest: "/usr/share/thruk/themes/themes-available/Exfoliation/images"
+    owner: www-data
+    group: www-data
+    mode: "644"
   with_fileglob:
   - "thruk_company_logos/*"
   when: thruk_copy_backgrounds
 
 - name: config_thruk | Copy backgrounds to thruk2 theme
   copy:
-    src={{ item }}
-    dest="/usr/share/thruk/themes/themes-available/Thruk2/images"
-    owner=www-data
-    group=www-data
-    mode=644
+    src: "{{ item }}"
+    dest: "/usr/share/thruk/themes/themes-available/Thruk2/images"
+    owner: www-data
+    group: www-data
+    mode: "644"
   with_fileglob:
   - "thruk_company_logos/*"
   when: thruk_copy_backgrounds
 
-- name: ensure permissions directory to thruk userdata
+- name: config_thruk | ensure permissions directory to thruk userdata
   file:
-    path="{{ thruk_backgrounds_path }}"
-    owner=www-data
-    group=www-data
-    mode=765
-    state=directory
+    path: "{{ thruk_backgrounds_path }}"
+    owner: www-data
+    group: www-data
+    mode: "765"
+    state: directory
 
 - name: config_thruk | copy sound files
-  copy: src={{ item }} dest="/usr/share/thruk/root/thruk/media" mode=644
+  copy: 
+    src: "{{ item }}"
+    dest: "/usr/share/thruk/root/thruk/media"
+    mode: "644"
   with_fileglob:
   - "sound/*"
   
-- name: configure cgi thruk
+- name: config_thruk | configure cgi thruk
   template:
-    src=cgi.cfg.j2
-    dest=/etc/thruk/cgi.cfg
-    owner=root group=root mode=644
+    src: "cgi.cfg.j2"
+    dest: "/etc/thruk/cgi.cfg"
+    owner: root
+    group: root
+    mode: "644"
 
-- name: configure thruk
+- name: config_thruk | configure thruk
   template:
-    src=thruk_local.conf.j2
-    dest="{{ thruk_local_conf }}"
-    owner=www-data group=www-data mode=660
+    src: "thruk_local.conf.j2"
+    dest: "{{ thruk_local_conf }}"
+    owner: www-data
+    group: www-data
+    mode: "660"
   notify: 
   - Restart Apache
   - Restart Thruk
 
-- name: setup link for htpasswd file
+- name: config_thruk | setup link for htpasswd file
   file:
     src: "{{ nagios_htpasswd }}"
     dest: "{{ thruk_htpasswd }}"
@@ -79,11 +86,14 @@
   notify:
   - Restart Apache
 
-- name: link images/logos for thruk theme Exfoliation
-  file: src={{ item.src }} dest={{ item.dest }} state=link
+- name: config_thruk | link images/logos for thruk theme Exfoliation
+  file: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
   with_items:
-    - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
-    - { src: '/usr/share/nagios3/htdocs/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
+    - { src: '/usr/local/nagios/share/images/logos', dest: '/usr/share/thruk/themes/themes-available/Exfoliation/images/logos' }
+    - { src: '/usr/local/nagios/share/images/logos', dest: '/usr/share/thruk/themes/themes-available/Thruk2/images/logos' }
   when: ansible_os_family == 'Debian'
 
 # enables the Apache2 module "fastcgi"
@@ -100,4 +110,3 @@
     state: present
     name: fcgid
   notify: Restart Apache
-

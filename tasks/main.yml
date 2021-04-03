@@ -6,11 +6,19 @@
     - config_nagios_thruk_cron
     - test_nagios_thruk
 
-- name: Ensure download directory is present
+- name: main | Ensure download directory is present
   file:
     path: "{{ download_dir }}"
     state: directory
-  
+
+# Dependency gpg-agent required before running apt-key ansible module
+- name: main | Install thruk dependencies
+  package:
+    name: "{{ thruk_dependencies | join(',') }}"
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+
 - include: repositories.yml
 
 - include: install_thruk.yml

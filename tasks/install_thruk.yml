@@ -1,12 +1,5 @@
 ---
 # file: tasks/install_thruk.yml
-
-- name: install_thruk | Install thruk dependencies
-  package:
-    name: "{{ thruk_dependencies | join(',') }}"
-    state: present
-  environment:
-    DEBIAN_FRONTEND: noninteractive
     
 - name: install_thruk | Install thruk packages
   package: 

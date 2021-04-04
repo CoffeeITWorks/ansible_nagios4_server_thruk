@@ -15,7 +15,6 @@ thruk_dependencies:
   - dialog
   - graphviz
   - libapache2-mod-fcgid
-  - libapache2-mod-fastcgi
   - apache2-utils
   - libdbi1
   - libevent-1.4-2
@@ -45,9 +44,11 @@ thruk_dependencies:
   - poppler-utils
   - nagios-images  # Installs /usr/share/nagios3/htdocs/images/logos/
   - locales
+  - gpg
+  - gpg-agent
 
 thruk_packages:
   - thruk # on repository
 
-thruk_enable_fastcgi: true
+thruk_enable_fastcgi: false
 

@@ -11,7 +11,7 @@ platforms:
 
   - name: ansible_nagios4_server_thruk-01
     image: "geerlingguy/docker-ubuntu1804-ansible:latest"
-    #privileged: True
+    privileged: True
     command: /sbin/init
     pre_build_image: true
     capabilities:
@@ -26,7 +26,7 @@ platforms:
 
   - name: ansible_nagios4_server_thruk-02
     image: "geerlingguy/docker-ubuntu1604-ansible:latest"
-    #privileged: True
+    privileged: True
     command: /sbin/init
     pre_build_image: true
     capabilities:

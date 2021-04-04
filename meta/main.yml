@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Diego Daguerre, Pablo Estigarribia
+  author: coffeeitworks
   description: Install thruk interface, prepared to be compatible with pnp4nagios, nagios_plugins
   license: GPLv2
   min_ansible_version: 2.0

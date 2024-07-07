@@ -1,7 +1,7 @@
 ---
 # file: tasks/main.yml 
 
-- include: multi_os.yml
+- import_tasks: multi_os.yml
   tags:
     - config_nagios_thruk_cron
     - test_nagios_thruk
@@ -19,24 +19,24 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
 
-- include: repositories.yml
+- import_tasks: repositories.yml
 
-- include: install_thruk.yml
+- import_tasks: install_thruk.yml
 
-- include: config_thruk.yml
+- import_tasks: config_thruk.yml
   tags:
     - config_nagios_thruk
 
-- include: config_nagios.yml
+- import_tasks: config_nagios.yml
 
-- include: config_thruk_logcache.yml
+- import_tasks: config_thruk_logcache.yml
 
-- include: config_thruk_cron.yml
+- import_tasks: config_thruk_cron.yml
   tags:
     - config_nagios_thruk_cron
 
-- include: thruk_fixes.yml
+- import_tasks: thruk_fixes.yml
 
-- include: tests.yml
+- import_tasks: tests.yml
   tags:
     - test_nagios_thruk
